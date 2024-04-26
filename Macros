@@ -1,0 +1,78 @@
+import BarChart from "@/components/mentor/chart/bar-chart/page";
+import LineChart from "@/components/mentor/chart/line-chart/page";
+import Image from "next/image";
+import React from "react";
+import "./page.scss";
+import StdTable from "@/components/mentor/student-table/page";
+import HowItWorksSection from "@/components/mentor/how-it-works/page";
+import { useSelector } from "react-redux";
+
+const MentorDash = () => {
+  const user = useSelector((state) => state.auth.data.user);
+
+  return (
+    <main className="col-md-9 ms-sm-auto col-lg-10 p-mb p-0 mentor-profile">
+      <div className="bg-screen position-relative">
+        <div className="row py-4">
+          <div className="col-sm-12">
+            <h1 className="text-white">Welcome Back, {user.first_name} {user.last_name}.</h1>
+          </div>
+        </div>
+        <div className="row g-3 py-3">
+          <div className="col-sm-6 col-lg-3  ">
+            <div className="p-3 bg-white rounded justify-content-between d-flex">
+              <span>
+                <p className="dashboard-p-label">Students</p>
+                <h3>342</h3>
+              </span>
+              <Image src="/mentor-home/std.svg" height={60} width={60} />
+            </div>
+          </div>
+          <div className="col-sm-6 col-lg-3  ">
+            <div className="p-3 bg-white rounded d-flex justify-content-between">
+              <span>
+                <p className="dashboard-p-label">Awards</p>
+                <h3>30+</h3>
+              </span>
+              <Image src="/mentor-home/award.svg" height={60} width={60} />
+            </div>
+          </div>
+          <div className="col-sm-6 col-lg-3">
+            <div className="p-3 bg-white rounded d-flex justify-content-between">
+              <span>
+                <p className="dashboard-p-label">Staff</p>
+                <h3>312+</h3>
+              </span>
+              <Image src="/mentor-home/staff.svg" height={60} width={60} />
+            </div>
+          </div>
+          <div className="col-sm-6 col-lg-3">
+            <div className="p-3 bg-white rounded d-flex justify-content-between">
+              <span>
+                <p className="dashboard-p-label">Revenue</p>
+                <h3>$34M</h3>
+              </span>
+              <Image src="/mentor-home/revenue.svg" height={60} width={60} />
+            </div>
+          </div>
+        </div>
+        <div className="row g-3 pb-3">
+          <div className="col-sm-12 col-lg-6 rounded">
+            <LineChart />
+          </div>
+          <div className="col-sm-12 col-lg-6 rounded">
+            <BarChart />
+          </div>
+        </div>
+        <div className="row g-1">
+          <div className="col-sm-12">
+            <StdTable />
+          </div>
+        </div>
+        <HowItWorksSection />
+      </div>
+    </main>
+  );
+};
+
+export default MentorDash;
